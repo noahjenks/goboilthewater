@@ -713,8 +713,13 @@
     cursor: pointer;
     transition: all 0.25s;
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: white;
+  }
+  .chooser-card-desc {
+    flex: 1;
   }
   .chooser-card:hover {
     border-color: var(--accent);
@@ -734,6 +739,7 @@
     color: var(--warm-gray);
     line-height: 1.6;
     margin-bottom: 1.5rem;
+    flex: 1;
   }
   .chooser-btn {
     display: inline-block;
@@ -901,7 +907,7 @@
         <div class="chapter-card">
           <p class="chapter-num">Part I</p>
           <h3 class="chapter-title">Why This Even Matters</h3>
-          <p class="chapter-desc">Disarm the reader. Establish humility. Build trust. A brief history of birth and how the modern world got so far from it.</p>
+          <p class="chapter-desc">A brief history of birth and how the modern world got so far from it.</p>
         </div>
         <div class="chapter-card">
           <p class="chapter-num">Part II</p>
@@ -910,7 +916,7 @@
         </div>
         <div class="chapter-card">
           <p class="chapter-num">Part III</p>
-          <h3 class="chapter-title">The Man in the Room</h3>
+          <h3 class="chapter-title">The Partner in the Room</h3>
           <p class="chapter-desc">The emotional, psychological, and relational reality. How to help when you feel helpless. Support vs. control. The difference matters more than you think.</p>
         </div>
         <div class="chapter-card">
@@ -979,7 +985,7 @@
     <div class="container">
       <p class="section-label">The Author</p>
       <h1 class="section-title">Noah Jenks</h1>
-      <p>Husband. Father of four. Homebirth convert.</p>
+      <p>Husband. Father of four. Home birth convert. And probably the last person you'd expect to write a book like this.</p>
     </div>
   </div>
 
@@ -993,7 +999,7 @@
           <p class="section-label">About Noah</p>
           <p>Noah Jenks is a husband, father of four, and first-time author writing from the perspective that is seldom talked about: the man standing in the room during a home birth, trying to figure out what he's supposed to do.</p>
 
-          <p>Noah and his wife Katie have navigated four wildly different birth experiences: an adoption, two hospital births, and one homebirth. The hospital births were disorienting, not because anything went wrong, but because no one told him what was happening or what his role was. He was present for every second and still felt completely lost.</p>
+          <p>Noah and his wife Katie have navigated four wildly different birth experiences: an adoption, two hospital births, and one home birth. The hospital births were disorienting for him, not because anything went wrong, but because no one told him what was happening or what his role was. He was present for every second and still felt completely lost.</p>
 
           <blockquote>"The doctors knew what to do. The nurses knew what to do. And I stood there, completely lost, trying to look like I had it together."</blockquote>
 
@@ -1002,8 +1008,6 @@
           <p>Noah has a background in education leadership, having served as a Head of School and spent six years as a middle school humanities teacher. His teaching philosophy centers on developing thoughtful, creative, and caring people, the same values that underpin every page of this project.</p>
 
           <p>He and Katie currently worldschool their four children across multiple continents, spending time in Tanzania, Spain, Italy, Uruguay, Japan, and wherever the next chapter takes them. They are, in every sense, a family that chose the less-traveled road.</p>
-
-          <p><strong>Katie</strong> isn't Noah's co-author, but she is woven into every page, as his editor, his sounding board, and the woman who has actually lived everything he's writing about. Her perspective keeps him honest.</p>
 
           <blockquote>"This is not a book about how to give birth. It's a book about how a partner shows up when birth is happening."</blockquote>
         </div>
