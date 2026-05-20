@@ -1264,5 +1264,18 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 </script>
 
+<!-- Mailchimp hidden iframe target (captures form POST without redirect) -->
+<iframe name="mc-hidden-iframe" style="display:none;" aria-hidden="true"></iframe>
+
+<!-- Mailchimp validation script -->
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+<script type="text/javascript">
+(function($) {
+  window.fnames = new Array(); window.ftypes = new Array();
+  fnames[0]='EMAIL'; ftypes[0]='email';
+}(jQuery));
+var $mcj = jQuery.noConflict(true);
+</script>
+
 </body>
 </html>
