@@ -1251,6 +1251,9 @@
   <p style="margin-top:0.5rem;">© 2026 Noah Jenks. All rights reserved.</p>
 </footer>
 
+<!-- Hidden iframe so Mailchimp POST doesn't redirect the page -->
+<iframe name="mc-hidden-iframe" style="display:none;" aria-hidden="true"></iframe>
+
 <script>
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1259,16 +1262,47 @@ function showPage(id) {
 }
 
 function handleSignup(inputId, successId) {
-  const email = document.getElementById(inputId).value;
+  const input = document.getElementById(inputId);
+  const email = input.value.trim();
+
   if (!email || !email.includes('@')) {
-    document.getElementById(inputId).style.borderColor = 'var(--accent)';
+    input.style.borderColor = 'var(--accent)';
+    input.focus();
     return;
   }
-  // Replace this with your actual GHL or email list endpoint
-  // For now shows success message
+
+  input.style.borderColor = '';
+
+  // Build and submit a real form to Mailchimp
+  const form = document.createElement('form');
+  form.action = 'https://goboilthewater.us18.list-manage.com/subscribe/post?u=a63f1a1d79f7d4fa5ef19eed8&id=6e871b2ba1&f_id=0091ace6f0';
+  form.method = 'POST';
+  form.target = 'mc-hidden-iframe';
+  form.style.display = 'none';
+
+  const emailField = document.createElement('input');
+  emailField.type = 'email';
+  emailField.name = 'EMAIL';
+  emailField.value = email;
+  form.appendChild(emailField);
+
+  // Mailchimp required bot-trap honeypot field
+  const honey = document.createElement('input');
+  honey.type = 'text';
+  honey.name = 'b_a63f1a1d79f7d4fa5ef19eed8_6e871b2ba1';
+  honey.tabIndex = -1;
+  honey.value = '';
+  honey.setAttribute('aria-hidden', 'true');
+  form.appendChild(honey);
+
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+
+  // Show success UI
   document.getElementById(successId).style.display = 'block';
-  document.getElementById(inputId).value = '';
-  document.getElementById(inputId).placeholder = 'You\'re on the list!';
+  input.value = '';
+  input.placeholder = "You're on the list!";
 }
 
 // Highlight active nav link
@@ -1277,19 +1311,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     document.querySelectorAll('.nav-links a').forEach(l => l.style.color = '');
   });
 });
-</script>
-
-<!-- Mailchimp hidden iframe target (captures form POST without redirect) -->
-<iframe name="mc-hidden-iframe" style="display:none;" aria-hidden="true"></iframe>
-
-<!-- Mailchimp validation script -->
-<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-<script type="text/javascript">
-(function($) {
-  window.fnames = new Array(); window.ftypes = new Array();
-  fnames[0]='EMAIL'; ftypes[0]='email';
-}(jQuery));
-var $mcj = jQuery.noConflict(true);
 </script>
 
 </body>
