@@ -967,11 +967,12 @@
       <p class="section-label">Stay in the Loop</p>
       <h2 class="section-title">Be First to Know<br><em>When It's Ready</em></h2>
       <p>No spam. Just a note when the book launches — and occasionally something worth reading in the meantime.</p>
-      <div class="email-form">
-        <input type="email" id="email-input-home" placeholder="your@email.com">
-        <button onclick="handleSignup('email-input-home', 'success-home')">Notify Me</button>
-      </div>
-      <div class="success-msg" id="success-home">You're on the list. Thank you!</div>
+      <form class="email-form" action="https://goboilthewater.us18.list-manage.com/subscribe/post?u=a63f1a1d79f7d4fa5ef19eed8&amp;id=6e871b2ba1&amp;f_id=0095ace6f0" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" placeholder="your@email.com" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_a63f1a1d79f7d4fa5ef19eed8_6e871b2ba1" tabindex="-1" value=""></div>
+        <button type="submit">Notify Me</button>
+      </form>
+      <div class="success-msg" id="success-home" style="display:none;">You're on the list. Thank you!</div>
       <p class="email-note">No spam, ever. Unsubscribe any time.</p>
     </div>
   </div>
@@ -1024,11 +1025,12 @@
       <p class="section-label">Stay Connected</p>
       <h2 class="section-title">Follow the Journey</h2>
       <p>Get updates on the book, behind-the-scenes from the research, and the occasional story worth telling.</p>
-      <div class="email-form">
-        <input type="email" id="email-input-about" placeholder="your@email.com">
-        <button onclick="handleSignup('email-input-about', 'success-about')">Stay in Touch</button>
-      </div>
-      <div class="success-msg" id="success-about">You're on the list. Thank you!</div>
+      <form class="email-form" action="https://goboilthewater.us18.list-manage.com/subscribe/post?u=a63f1a1d79f7d4fa5ef19eed8&amp;id=6e871b2ba1&amp;f_id=0095ace6f0" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" placeholder="your@email.com" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_a63f1a1d79f7d4fa5ef19eed8_6e871b2ba1" tabindex="-1" value=""></div>
+        <button type="submit">Stay in Touch</button>
+      </form>
+      <div class="success-msg" id="success-about" style="display:none;">You're on the list. Thank you!</div>
       <p class="email-note">No spam, ever.</p>
     </div>
   </div>
@@ -1148,11 +1150,12 @@
       <p class="section-label">Coming Soon</p>
       <h2 class="section-title">Be First in Line<br><em>When It Launches</em></h2>
       <p>Get notified when the book is available. No spam, just the news when it matters.</p>
-      <div class="email-form">
-        <input type="email" id="email-input-book" placeholder="your@email.com">
-        <button onclick="handleSignup('email-input-book', 'success-book')">Notify Me</button>
-      </div>
-      <div class="success-msg" id="success-book">You're on the list. Thank you!</div>
+      <form class="email-form" action="https://goboilthewater.us18.list-manage.com/subscribe/post?u=a63f1a1d79f7d4fa5ef19eed8&amp;id=6e871b2ba1&amp;f_id=0095ace6f0" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" placeholder="your@email.com" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_a63f1a1d79f7d4fa5ef19eed8_6e871b2ba1" tabindex="-1" value=""></div>
+        <button type="submit">Notify Me</button>
+      </form>
+      <div class="success-msg" id="success-book" style="display:none;">You're on the list. Thank you!</div>
       <p class="email-note">No spam, ever. Unsubscribe any time.</p>
     </div>
   </div>
@@ -1233,11 +1236,12 @@
       <p class="section-label">Stay in the Loop</p>
       <h2 class="section-title">New Posts,<br><em>When They're Ready</em></h2>
       <p>No feed to check. Just an occasional note when something worth reading goes up.</p>
-      <div class="email-form">
-        <input type="email" id="email-input-blog" placeholder="your@email.com">
-        <button onclick="handleSignup('email-input-blog', 'success-blog')">Subscribe</button>
-      </div>
-      <div class="success-msg" id="success-blog">You're on the list. Thank you!</div>
+      <form class="email-form" action="https://goboilthewater.us18.list-manage.com/subscribe/post?u=a63f1a1d79f7d4fa5ef19eed8&amp;id=6e871b2ba1&amp;f_id=0095ace6f0" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" placeholder="your@email.com" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_a63f1a1d79f7d4fa5ef19eed8_6e871b2ba1" tabindex="-1" value=""></div>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="success-msg" id="success-blog" style="display:none;">You're on the list. Thank you!</div>
       <p class="email-note">No spam, ever. Unsubscribe any time.</p>
     </div>
   </div>
@@ -1251,58 +1255,11 @@
   <p style="margin-top:0.5rem;">© 2026 Noah Jenks. All rights reserved.</p>
 </footer>
 
-<!-- Hidden iframe so Mailchimp POST doesn't redirect the page -->
-<iframe name="mc-hidden-iframe" style="display:none;" aria-hidden="true"></iframe>
-
 <script>
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function handleSignup(inputId, successId) {
-  const input = document.getElementById(inputId);
-  const email = input.value.trim();
-
-  if (!email || !email.includes('@')) {
-    input.style.borderColor = 'var(--accent)';
-    input.focus();
-    return;
-  }
-
-  input.style.borderColor = '';
-
-  // Build and submit a real form to Mailchimp
-  const form = document.createElement('form');
-  form.action = 'https://goboilthewater.us18.list-manage.com/subscribe/post?u=a63f1a1d79f7d4fa5ef19eed8&id=6e871b2ba1&f_id=0091ace6f0';
-  form.method = 'POST';
-  form.target = 'mc-hidden-iframe';
-  form.style.display = 'none';
-
-  const emailField = document.createElement('input');
-  emailField.type = 'email';
-  emailField.name = 'EMAIL';
-  emailField.value = email;
-  form.appendChild(emailField);
-
-  // Mailchimp required bot-trap honeypot field
-  const honey = document.createElement('input');
-  honey.type = 'text';
-  honey.name = 'b_a63f1a1d79f7d4fa5ef19eed8_6e871b2ba1';
-  honey.tabIndex = -1;
-  honey.value = '';
-  honey.setAttribute('aria-hidden', 'true');
-  form.appendChild(honey);
-
-  document.body.appendChild(form);
-  form.submit();
-  document.body.removeChild(form);
-
-  // Show success UI
-  document.getElementById(successId).style.display = 'block';
-  input.value = '';
-  input.placeholder = "You're on the list!";
 }
 
 // Highlight active nav link
@@ -1312,6 +1269,8 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 </script>
+
+
 
 </body>
 </html>
