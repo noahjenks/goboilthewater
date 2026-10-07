@@ -883,3 +883,17 @@
     .c1-dialog .email-form input { width:100%; }
     .c1-dialog .email-form button { width:100%; }
   }
+
+  /* ===== Real book cover ===== */
+  .cover-hero, .cover-book { display:block; }
+  .cover-hero img, .cover-book img { display:block; width:100%; height:auto; border-radius:2px; box-shadow:-10px 14px 40px rgba(28,24,18,0.28), -2px 2px 0 rgba(139,92,42,0.15); }
+  .cover-hero { width:260px; transform:rotate(-2deg); animation:fadeUp 0.7s 0.2s ease both; }
+  .book-cover-col { position:sticky; top:96px; }
+  .cover-book { width:100%; max-width:280px; }
+  .c1-cover { width:84px; height:auto; display:block; margin:0 auto 1.25rem; border-radius:2px; box-shadow:0 8px 24px rgba(0,0,0,0.4); }
+  @media (max-width: 768px) {
+    .cover-hero { width:200px; }
+    .book-cover-col { position:static; }
+    .cover-book { max-width:220px; margin:0 auto; }
+  }
+  @media (max-height: 700px) { .c1-cover { display:none; } }
