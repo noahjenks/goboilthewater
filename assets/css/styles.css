@@ -853,3 +853,33 @@
   @media (max-width: 768px) { .hero-left::after { display:none; } }
   .btn-outline { background:transparent; color:var(--charcoal); padding:13px 26px; border:1px solid var(--charcoal); border-radius:2px; font-family:var(--font-body); font-size:0.85rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; display:inline-block; transition:all 0.2s; }
   .btn-outline:hover { background:var(--charcoal); color:var(--cream); }
+
+  /* ===== Free Chapter 1 popup ===== */
+  .c1-dialog { border:none; padding:0; max-width:460px; width:calc(100% - 2rem); background:var(--ink); color:var(--cream); border-radius:3px; box-shadow:0 30px 80px rgba(0,0,0,0.45); }
+  .c1-dialog::backdrop { background:rgba(28,24,18,0.72); }
+  .c1-inner { padding:2.75rem 2.25rem 2.25rem; position:relative; text-align:center; }
+  .c1-close { position:absolute; top:0.75rem; right:0.75rem; background:none; border:none; color:var(--warm-gray); font-size:1.6rem; line-height:1; width:40px; height:40px; cursor:pointer; }
+  .c1-close:hover { color:var(--cream); }
+  .c1-label { font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; font-weight:500; }
+  .c1-title { font-family:var(--font-display); font-size:1.9rem; font-weight:900; line-height:1.15; color:var(--cream); margin-bottom:0.25rem; }
+  .c1-title em { font-style:italic; color:var(--gold); }
+  .c1-sub { font-family:var(--font-display); font-style:italic; color:var(--warm-gray); font-size:1rem; margin-bottom:1.25rem; }
+  .c1-text { font-size:0.9rem; color:var(--warm-gray); line-height:1.7; margin-bottom:1.75rem; }
+  .c1-dialog .email-form { max-width:none; }
+  .c1-error { margin-top:0.9rem; font-size:0.82rem; color:#F2B8A0; line-height:1.6; }
+  .c1-error a { color:var(--gold); }
+  .c1-note { margin-top:1rem; font-size:0.72rem; color:rgba(212,197,176,0.45); }
+  .c1-step-done .btn-primary { margin:0.5rem 0 1rem; }
+  .c1-band { background:var(--charcoal); padding:3rem 0; }
+  .c1-band-inner { max-width:900px; margin:0 auto; padding:0 2rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+  .c1-band h2 { font-family:var(--font-display); font-size:1.6rem; font-weight:700; color:var(--cream); line-height:1.25; }
+  .c1-band h2 em { color:var(--gold); }
+  .c1-band p { color:var(--warm-gray); font-size:0.92rem; margin-top:0.35rem; }
+  .book-buy .btn-link { background:none; border:none; padding:0; color:var(--accent); font-family:var(--font-body); font-size:0.85rem; text-decoration:underline; cursor:pointer; }
+  .c1-dialog { margin:auto; position:fixed; inset:0; height:fit-content; max-height:calc(100% - 2rem); overflow:auto; }
+  @media (max-width: 520px) {
+    .c1-inner { padding:2.5rem 1.4rem 1.6rem; }
+    .c1-dialog .email-form { flex-direction:column; }
+    .c1-dialog .email-form input { width:100%; }
+    .c1-dialog .email-form button { width:100%; }
+  }

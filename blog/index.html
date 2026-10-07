@@ -107,7 +107,7 @@
 }
 </script>
 </head>
-<body>
+<body data-autopopup="on">
 <a class="skip-link" href="#main">Skip to content</a>
 <nav aria-label="Main">
   <a class="nav-logo" href="/">Go Boil the Water</a>
@@ -180,5 +180,31 @@
     t.setAttribute('aria-expanded', open);
   });
 </script>
+<dialog class="c1-dialog" id="chapter-one" aria-labelledby="c1-title">
+  <div class="c1-inner">
+    <button class="c1-close" type="button" aria-label="Close">&times;</button>
+    <div class="c1-step-form">
+      <p class="c1-label">Free Chapter</p>
+      <h2 class="c1-title" id="c1-title">Read Chapter 1 <em>Free</em></h2>
+      <p class="c1-sub">"Homebirth? That's a Thing?"</p>
+      <p class="c1-text">Where every skeptical partner starts. A brief history of birth, how medicine changed everything, and why homebirth today isn't anti-medicine. Enter your email and the chapter is yours.</p>
+      <form class="email-form" action="https://goboilthewater.us18.list-manage.com/subscribe/post?u=a63f1a1d79f7d4fa5ef19eed8&amp;id=6e871b2ba1&amp;f_id=0095ace6f0" method="post" data-honeypot="b_a63f1a1d79f7d4fa5ef19eed8_6e871b2ba1" novalidate>
+        <label class="visually-hidden" for="c1-email">Email address</label>
+        <input type="email" id="c1-email" name="EMAIL" placeholder="your@email.com" autocomplete="email" required>
+        <button type="submit">Send Me Chapter 1</button>
+      </form>
+      <p class="c1-error" role="alert" hidden></p>
+      <p class="c1-note">You'll also get the occasional note from Noah. Unsubscribe any time.</p>
+    </div>
+    <div class="c1-step-done" hidden>
+      <p class="c1-label">You're In</p>
+      <h2 class="c1-title">Chapter 1 <em>Is Yours</em></h2>
+      <p class="c1-text">Thanks for signing up. Open the chapter below and save it to your phone or computer.</p>
+      <a class="btn-primary" href="https://drive.google.com/file/d/1Z5TYON2190UvUadv68agDtk4LpjiutzL/view" target="_blank" rel="noopener">Open Chapter 1</a>
+      <p class="c1-text" style="margin-bottom:0;">Want the rest? <a href="https://www.amazon.com/dp/B0HLVV9SBS" target="_blank" rel="noopener" style="color:var(--gold);">Get it on Kindle</a> or <a href="https://open.spotify.com/show/7cUC4ig0KA3HpG8YFI9sSd" target="_blank" rel="noopener" style="color:var(--gold);">listen on Spotify</a>.</p>
+    </div>
+  </div>
+</dialog>
+<script src="/assets/js/chapter-one.js" defer></script>
 </body>
 </html>
