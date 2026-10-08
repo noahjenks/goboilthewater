@@ -944,3 +944,18 @@
     .post-book-cta { flex-direction: column; align-items: flex-start; }
     .post-body { font-size: 1rem; }
   }
+
+  /* ===== About + simple pages ===== */
+  .about-bio h2.about-sub { font-family: var(--font-display); font-size: 1.45rem; font-weight: 700; color: var(--charcoal); letter-spacing: 0; text-transform: none; margin: 2.5rem 0 1rem; }
+  .about-bio a { color: var(--accent); }
+  .about-links { font-size: 0.95rem; }
+  .post-body .btn-link, .about-bio .btn-link { background: none; border: none; padding: 0; color: var(--accent); font: inherit; text-decoration: underline; cursor: pointer; }
+  .gloss-index { display: flex; flex-wrap: wrap; gap: 0.4rem 0.6rem; margin: 1.5rem 0 2.5rem; }
+  .gloss-index a { font-size: 0.8rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 2px; text-decoration: none; color: var(--charcoal); }
+  .gloss-index a:hover { border-color: var(--accent); color: var(--accent); }
+  .glossary { margin: 0; }
+  .gloss-item { border-top: 1px solid var(--border); padding: 1.4rem 0; scroll-margin-top: 90px; }
+  .gloss-item:last-child { border-bottom: 1px solid var(--border); }
+  .gloss-item dt { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.4rem; }
+  .gloss-item dd { margin: 0; font-size: 1rem; line-height: 1.8; color: #3E342B; }
+  .gloss-item:target dt { color: var(--accent); }
