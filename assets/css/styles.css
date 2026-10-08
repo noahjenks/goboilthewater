@@ -959,3 +959,31 @@
   .gloss-item dt { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.4rem; }
   .gloss-item dd { margin: 0; font-size: 1rem; line-height: 1.8; color: #3E342B; }
   .gloss-item:target dt { color: var(--accent); }
+  .dir-note { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--warm-gray); }
+
+  /* ===== Resources dropdown, contact, hub ===== */
+  .has-sub { position: relative; }
+  .sub-menu { display: none; position: absolute; top: 100%; left: -1.1rem; padding: 1.4rem 0 0; list-style: none; min-width: 230px; }
+  .sub-menu::before { content: ""; position: absolute; inset: 1.4rem 0 0 0; background: #FDFAF5; border: 1px solid var(--border); box-shadow: 0 12px 24px rgba(28,24,18,0.12); border-radius: 2px; z-index: -1; }
+  .sub-menu li:first-child { padding-top: 0.4rem; }
+  .sub-menu li:last-child { padding-bottom: 0.4rem; }
+  .sub-menu a { display: block; padding: 0.6rem 1.1rem; white-space: nowrap; }
+  .has-sub:hover .sub-menu, .has-sub:focus-within .sub-menu { display: block; }
+  .has-sub > a::after { content: " ▾"; font-size: 0.7em; }
+  footer .footer-social { margin-top: 0.3rem; }
+  .contact-card { background: var(--cream); border-left: 3px solid var(--gold); padding: 1.6rem 1.8rem; margin-bottom: 2.5rem; border-radius: 2px; }
+  .contact-email { font-family: var(--font-display); font-size: 1.6rem; margin: 0.2rem 0 1rem; }
+  .contact-email a { color: var(--charcoal); text-decoration: none; }
+  .copy-done { margin-left: 0.75rem; font-size: 0.85rem; color: var(--accent); }
+  .res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+  .res-card { display: block; border: 1px solid var(--border); padding: 1.5rem; border-radius: 2px; text-decoration: none; background: #fff; transition: border-color 0.2s, transform 0.2s; }
+  .res-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .res-card h2 { font-family: var(--font-display); font-size: 1.2rem; margin: 0 0 0.5rem !important; color: var(--charcoal); }
+  .res-card p { font-size: 0.92rem; line-height: 1.7; color: #5E4E40; margin: 0; }
+  @media (max-width: 768px) {
+    .has-sub > a::after { content: ""; }
+    .sub-menu { display: block; position: static; padding: 0 0 0.6rem 1rem; min-width: 0; }
+    .sub-menu::before { display: none; }
+    .sub-menu li { border-bottom: none !important; padding: 0 !important; }
+    .sub-menu a { padding: 0.5rem 0; font-size: 0.78rem; color: var(--warm-gray); }
+  }
