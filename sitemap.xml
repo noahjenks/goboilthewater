@@ -20,7 +20,7 @@
   </url>
   <url>
     <loc>https://goboilthewater.com/blog/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -135,6 +135,12 @@
   <url>
     <loc>https://goboilthewater.com/blog/husband-catches-baby-home-birth/</loc>
     <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://goboilthewater.com/blog/is-home-birth-anti-medicine/</loc>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
