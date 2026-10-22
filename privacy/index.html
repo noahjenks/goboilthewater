@@ -3,6 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Analytics. For European visitors, cookies stay off until they say yes. -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted'});
+gtag('consent', 'default', {ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE", "IS", "LI", "NO", "GB", "CH"]});
+try { var gbtwC = localStorage.getItem('gbtw_consent'); if (gbtwC) gtag('consent', 'update', {analytics_storage: gbtwC}); } catch (e) {}
+gtag('js', new Date());
+gtag('config', 'G-QD1X9MSMGZ');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QD1X9MSMGZ"></script>
+<script src="/assets/js/consent.js" defer></script>
 <title>Privacy Policy | Go Boil the Water</title>
 <meta name="description" content="How goboilthewater.com collects, uses, and protects your information, including email signups and questionnaire responses.">
 <meta name="author" content="Noah Jenks">
@@ -108,7 +120,7 @@
     <div class="container">
       <p class="section-label">Privacy</p>
       <h1 class="section-title">Privacy <em>Policy</em></h1>
-      <p>Last updated October 8, 2026</p>
+      <p>Last updated October 22, 2026</p>
     </div>
   </div>
 
@@ -118,15 +130,17 @@
 
       <h2>What we collect</h2>
       <ul>
-        <li>Your email address, if you sign up for updates or the free first chapter. Signups are handled by Mailchimp, our email service.</li>
+        <li>Your first name and email address, plus the answers you tap in the free chapter quiz (whether you're a partner, mom, midwife, or doula, where you are in the process, and what's on your mind), and the site or link that brought you here. This helps us send emails that fit you. Signups are handled by Mailchimp, our email service.</li>
         <li>Questionnaire answers, if you choose to share your birth story. The questionnaires run on Google Forms, and each one explains how your answers may be used before you start.</li>
         <li>Basic technical information. Like most websites, our hosting provider (GitHub Pages) may log your IP address and browser details to keep the site secure. The site also loads fonts from Google Fonts, which receives your IP address when the page loads.</li>
-        <li>A small note in your own browser that remembers whether you've seen or closed the free chapter popup. It stays on your device and is never sent to us.</li>
+        <li>Visit statistics through Google Analytics: which pages people view, how they arrived (for example from Google, ChatGPT, or Instagram), and whether they finished the free chapter quiz. We see totals, not who you are, and we never send your name or email to Google. If you're in the UK, European Union, or Switzerland, Google Analytics only sets its cookies if you choose "That's fine" in the cookie bar. If you say no, we receive only anonymous counts without cookies.</li>
+        <li>A few small notes in your own browser: whether you've signed up or closed the free chapter popup, which link brought you here, and your cookie choice. They stay on your device.</li>
       </ul>
       <p>We don't use advertising trackers, and we don't sell your information.</p>
+      <p><button class="btn-link" type="button" onclick="window.gbtwCookieSettings && window.gbtwCookieSettings()">Change your cookie choice</button></p>
 
       <h2>How we use it</h2>
-      <p>We use your email address to send the free chapter, new posts, and occasional updates about the book. We use questionnaire answers to write the book, blog posts, and related materials, as described in each form.</p>
+      <p>We use your name and email address to send the free chapter, new posts, and occasional updates about the book. We use questionnaire answers to write the book, blog posts, and related materials, as described in each form. We use Google Analytics totals to see which pages help people and to improve the site.</p>
 
       <h2>Your choices</h2>
       <ul>
@@ -162,30 +176,10 @@
     t.setAttribute('aria-expanded', open);
   });
 </script>
-<dialog class="c1-dialog" id="chapter-one" aria-labelledby="c1-title">
+<dialog class="c1-dialog" id="chapter-one" aria-label="Get Chapter 1 free">
   <div class="c1-inner">
     <button class="c1-close" type="button" aria-label="Close">&times;</button>
-    <div class="c1-step-form">
-      <img class="c1-cover" src="/assets/images/go-boil-the-water-cover-400.jpg" width="400" height="640" alt="" loading="lazy">
-      <p class="c1-label">Free Chapter</p>
-      <h2 class="c1-title" id="c1-title">Read Chapter 1 <em>Free</em></h2>
-      <p class="c1-sub">"Homebirth? That's a Thing?"</p>
-      <p class="c1-text">Where every skeptical partner starts. A brief history of birth, how medicine changed everything, and why homebirth today isn't anti-medicine. Enter your email and the chapter is yours.</p>
-      <form class="email-form" action="https://goboilthewater.us18.list-manage.com/subscribe/post?u=a63f1a1d79f7d4fa5ef19eed8&amp;id=6e871b2ba1&amp;f_id=0095ace6f0" method="post" data-honeypot="b_a63f1a1d79f7d4fa5ef19eed8_6e871b2ba1" novalidate>
-        <label class="visually-hidden" for="c1-email">Email address</label>
-        <input type="email" id="c1-email" name="EMAIL" placeholder="your@email.com" autocomplete="email" required>
-        <button type="submit">Send Me Chapter 1</button>
-      </form>
-      <p class="c1-error" role="alert" hidden></p>
-      <p class="c1-note">You'll also get the occasional note from Noah. Unsubscribe any time.</p>
-    </div>
-    <div class="c1-step-done" hidden>
-      <p class="c1-label">You're In</p>
-      <h2 class="c1-title">Chapter 1 <em>Is Yours</em></h2>
-      <p class="c1-text">Thanks for signing up. Open the chapter below and save it to your phone or computer.</p>
-      <a class="btn-primary" href="https://drive.google.com/file/d/1Z5TYON2190UvUadv68agDtk4LpjiutzL/view" target="_blank" rel="noopener">Open Chapter 1</a>
-      <p class="c1-text" style="margin-bottom:0;">Want the rest? <a href="https://www.amazon.com/dp/B0HLVV9SBS" target="_blank" rel="noopener" style="color:var(--gold);">Get it on Amazon</a> in paperback or Kindle, or <a href="https://open.spotify.com/show/7cUC4ig0KA3HpG8YFI9sSd" target="_blank" rel="noopener" style="color:var(--gold);">listen on Spotify</a>.</p>
-    </div>
+    <div class="gq-popup-body"></div>
   </div>
 </dialog>
 <script src="/assets/js/chapter-one.js" defer></script>
