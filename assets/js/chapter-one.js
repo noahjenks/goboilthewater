@@ -232,7 +232,7 @@
     var cb = 'gbtwQuiz_' + Date.now();
     var url = MC_URL;
     Object.keys(fields).forEach(function (k) { url += '&' + k + '=' + encodeURIComponent(fields[k]); });
-    url += '&' + HONEYPOT + '=&c=' + cb;
+    url += '&tags=3055712&' + HONEYPOT + '=&c=' + cb;
 
     var script = document.createElement('script');
     var timer = setTimeout(function () { finish({ result: 'error', msg: 'timeout' }); }, 10000);
