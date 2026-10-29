@@ -20,7 +20,7 @@
   </url>
   <url>
     <loc>https://goboilthewater.com/blog/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -177,6 +177,12 @@
   <url>
     <loc>https://goboilthewater.com/blog/what-dads-wish-they-knew-home-birth/</loc>
     <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://goboilthewater.com/blog/why-dads-freeze-during-birth/</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
