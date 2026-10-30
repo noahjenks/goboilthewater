@@ -20,7 +20,7 @@
   </url>
   <url>
     <loc>https://goboilthewater.com/blog/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -183,6 +183,12 @@
   <url>
     <loc>https://goboilthewater.com/blog/why-dads-freeze-during-birth/</loc>
     <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://goboilthewater.com/blog/questions-to-ask-home-birth-midwife/</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
