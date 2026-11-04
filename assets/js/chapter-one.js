@@ -10,6 +10,26 @@
   var MC_URL = 'https://goboilthewater.us18.list-manage.com/subscribe/post-json?u=a63f1a1d79f7d4fa5ef19eed8&id=6e871b2ba1&f_id=0095ace6f0';
   var HONEYPOT = 'b_a63f1a1d79f7d4fa5ef19eed8_6e871b2ba1';
 
+  /* Two free downloads share this quiz. Pick one with data-offer="workbook" on the [data-gbtw-quiz] element.
+     OFFER is sent to Mailchimp as a merge field so the welcome journey can tell them apart. */
+  var WORKBOOK_AMAZON = 'https://a.co/d/06ITG5lg';
+  var OFFERS = {
+    ch1: {
+      label: 'Free Chapter', heading: 'Get Chapter 1 <em>free.</em>', button: 'Send me Chapter 1',
+      doneHeading: 'Chapter 1 <em>is yours.</em>', open: 'Open Chapter 1', file: CH1_URL,
+      doneText: 'It’s on its way to your inbox too. Open it here and save it to your phone.',
+      tag: '3055712', mcOffer: 'book-ch1', keyDone: 'gbtw_ch1_done', keyRole: 'gbtw_ch1_role',
+      more: 'Want the rest? <a href="https://www.amazon.com/dp/B0HLVV9SBS" target="_blank" rel="noopener">Get it on Amazon</a>, <a href="' + WORKBOOK_AMAZON + '" target="_blank" rel="noopener" data-workbook-link>grab the workbook</a>, or <a href="https://open.spotify.com/show/7cUC4ig0KA3HpG8YFI9sSd" target="_blank" rel="noopener">listen on Spotify</a>.'
+    },
+    workbook: {
+      label: 'Free Workbook Chapter', heading: 'Get <em>Before the Room</em>, Chapter 1 free.', button: 'Send me the workbook chapter',
+      doneHeading: 'Your workbook chapter <em>is ready.</em>', open: 'Open the workbook chapter', file: '/assets/downloads/before-the-room-chapter-1.pdf',
+      doneText: 'Open it here and save it to your phone, or print it and do it together.',
+      tag: '', mcOffer: 'workbook-ch1', keyDone: 'gbtw_wb1_done', keyRole: 'gbtw_wb1_role',
+      more: 'Want all ten chapters? <a href="' + WORKBOOK_AMAZON + '" target="_blank" rel="noopener" data-workbook-link>Get the full workbook on Amazon</a>. It sits right next to <a href="https://www.amazon.com/dp/B0HLVV9SBS" target="_blank" rel="noopener">Go Boil the Water</a>.'
+    }
+  };
+
   var KEY_DONE = 'gbtw_ch1_done';
   var KEY_ROLE = 'gbtw_ch1_role';
   var KEY_CLOSED = 'gbtw_ch1_closed';
@@ -100,16 +120,18 @@
   };
 
   /* ---------- One quiz instance ---------- */
-  function Quiz(root, where) {
+  function Quiz(root, where, offer) {
     this.root = root;
     this.where = where;
+    this.offerId = OFFERS[offer] ? offer : 'ch1';
+    this.offer = OFFERS[this.offerId];
     this.answers = {};
     this.picked = {};
     this.path = null;
     this.step = 0;
     this.started = false;
     root.classList.add('gq');
-    if (get(KEY_DONE)) this.renderDone(get(KEY_ROLE) || '', true);
+    if (get(this.offer.keyDone)) this.renderDone(get(this.offer.keyRole) || '', true);
     else this.renderQuestion();
   }
 
@@ -118,8 +140,8 @@
   Quiz.prototype.header = function () {
     var dots = '';
     for (var i = 0; i < 4; i++) dots += '<span class="gq-dot' + (i <= this.step ? ' on' : '') + '"></span>';
-    return '<p class="gq-label">Free Chapter</p>' +
-      '<p class="gq-heading">Get Chapter 1 <em>free.</em></p>' +
+    return '<p class="gq-label">' + this.offer.label + '</p>' +
+      '<p class="gq-heading">' + this.offer.heading + '</p>' +
       '<div class="gq-progress" aria-hidden="true">' + dots + '</div>';
   };
 
@@ -202,7 +224,7 @@
         '<input id="' + id + 'n" name="FNAME" type="text" placeholder="First name" autocomplete="given-name" required>' +
         '<label class="visually-hidden" for="' + id + 'e">Email address</label>' +
         '<input id="' + id + 'e" name="EMAIL" type="email" placeholder="Email" autocomplete="email" required>' +
-        '<button type="submit">Send me Chapter 1</button>' +
+        '<button type="submit">' + this.offer.button + '</button>' +
       '</form>' +
       '<p class="gq-error" role="alert" hidden></p>' +
       '<p class="gq-note">You’ll also get a short note from Noah most weeks. Unsubscribe any time.</p>' +
@@ -227,12 +249,14 @@
       ROLE: a.role ? a.role.v : '',
       STAGE: a.stage ? a.stage.v : '',
       FOCUS: (a.focus || []).map(function (o) { return o.v; }).join(', '),
-      SOURCE: source()
+      SOURCE: source(),
+      OFFER: this.offer.mcOffer
     };
     var cb = 'gbtwQuiz_' + Date.now();
     var url = MC_URL;
     Object.keys(fields).forEach(function (k) { url += '&' + k + '=' + encodeURIComponent(fields[k]); });
-    url += '&tags=3055712&' + HONEYPOT + '=&c=' + cb;
+    if (this.offer.tag) url += '&tags=' + this.offer.tag;
+    url += '&' + HONEYPOT + '=&c=' + cb;
 
     var script = document.createElement('script');
     var timer = setTimeout(function () { finish({ result: 'error', msg: 'timeout' }); }, 10000);
@@ -243,12 +267,12 @@
       if (script.parentNode) script.parentNode.removeChild(script);
       var msg = d && d.msg ? String(d.msg) : '';
       if (d && (d.result === 'success' || /already subscribed/i.test(msg))) {
-        set(KEY_DONE, '1'); set(KEY_ROLE, fields.ROLE);
-        track('generate_lead', { role: fields.ROLE, focus: fields.FOCUS, lead_source: fields.SOURCE, quiz_location: self.where });
+        set(self.offer.keyDone, '1'); set(self.offer.keyRole, fields.ROLE);
+        track('generate_lead', { role: fields.ROLE, focus: fields.FOCUS, lead_source: fields.SOURCE, quiz_location: self.where, offer: self.offerId });
         self.renderDone(fields.ROLE, false);
         return;
       }
-      btn.disabled = false; btn.textContent = 'Send me Chapter 1';
+      btn.disabled = false; btn.textContent = self.offer.button;
       if (/too many/i.test(msg)) err.textContent = 'Too many tries from this email. Wait a few minutes and try again.';
       else err.innerHTML = 'Something went wrong on our end. Try again, or email <a href="mailto:noah@goboilthewater.com">noah@goboilthewater.com</a> and Noah will send Chapter 1 directly.';
       err.hidden = false;
@@ -262,12 +286,15 @@
   Quiz.prototype.renderDone = function (role, returning) {
     var focus = (this.answers.focus || []).map(function (o) { return o.v; });
     var html = '<p class="gq-label">' + (returning ? 'Welcome back' : 'You’re in') + '</p>' +
-      '<p class="gq-heading">Chapter 1 <em>is yours.</em></p>' +
-      '<p class="gq-result">' + (returning ? 'Here’s your copy again.' : 'It’s on its way to your inbox too. Open it here and save it to your phone.') + '</p>' +
-      '<a class="gq-cta" href="' + CH1_URL + '" target="_blank" rel="noopener">Open Chapter 1</a>';
+      '<p class="gq-heading">' + this.offer.doneHeading + '</p>' +
+      '<p class="gq-result">' + (returning ? 'Here’s your copy again.' : this.offer.doneText) + '</p>' +
+      '<a class="gq-cta" href="' + this.offer.file + '" target="_blank" rel="noopener" data-download="' + this.offerId + '">' + this.offer.open + '</a>';
 
     if (role === 'Mom') {
-      var msg = 'I want you to read this. It’s the first chapter of a book for husbands about home birth, written by a dad: ' + CH1_URL;
+      var shareUrl = this.offerId === 'workbook' ? 'https://goboilthewater.com' + this.offer.file : CH1_URL;
+      var msg = this.offerId === 'workbook'
+        ? 'Can we do this one together? It’s the first chapter of a workbook for husbands getting ready for a home birth: ' + shareUrl
+        : 'I want you to read this. It’s the first chapter of a book for husbands about home birth, written by a dad: ' + CH1_URL;
       html += '<div class="gq-share"><p>Want him to read it?</p>' +
         '<a class="gq-share-btn" href="sms:?&body=' + encodeURIComponent(msg) + '" data-share="sms">Text it to him</a>' +
         '<a class="gq-share-btn" href="https://wa.me/?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener" data-share="whatsapp">Send on WhatsApp</a></div>';
@@ -280,11 +307,11 @@
     if (focus.indexOf('Transfer') !== -1) {
       html += '<p class="gq-more">And here’s the post I mentioned: <a href="/blog/home-birth-hospital-transfer/">What happens if we need to transfer?</a></p>';
     }
-    html += '<p class="gq-more">Want the rest? <a href="https://www.amazon.com/dp/B0HLVV9SBS" target="_blank" rel="noopener">Get it on Amazon</a> or <a href="https://open.spotify.com/show/7cUC4ig0KA3HpG8YFI9sSd" target="_blank" rel="noopener">listen on Spotify</a>.</p>';
+    html += '<p class="gq-more">' + this.offer.more + '</p>';
     this.root.innerHTML = html;
-    var where = this.where;
+    var where = this.where, offerId = this.offerId;
     this.root.querySelectorAll('[data-share]').forEach(function (a) {
-      a.addEventListener('click', function () { track('share', { method: a.dataset.share, content_type: 'chapter_1', quiz_location: where }); });
+      a.addEventListener('click', function () { track('share', { method: a.dataset.share, content_type: offerId === 'workbook' ? 'workbook_ch1' : 'chapter_1', quiz_location: where }); });
     });
   };
 
@@ -292,7 +319,7 @@
   var inline = [];
   document.querySelectorAll('[data-gbtw-quiz]').forEach(function (el) {
     inline.push(el);
-    new Quiz(el, el.dataset.gbtwQuiz || 'inline');
+    new Quiz(el, el.dataset.gbtwQuiz || 'inline', el.dataset.offer);
   });
 
   /* ---------- Popup ---------- */
