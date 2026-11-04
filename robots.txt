@@ -1,27 +1,36 @@
 # Go Boil the Water
 # Search engines and AI assistants are welcome to read this site.
+# The free workbook chapter is kept out of search so it stays behind the email signup.
 User-agent: *
 Allow: /
+Disallow: /assets/downloads/before-the-room-chapter-1.pdf
 
 User-agent: GPTBot
 Allow: /
+Disallow: /assets/downloads/before-the-room-chapter-1.pdf
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /assets/downloads/before-the-room-chapter-1.pdf
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /assets/downloads/before-the-room-chapter-1.pdf
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /assets/downloads/before-the-room-chapter-1.pdf
 
 User-agent: Claude-SearchBot
 Allow: /
+Disallow: /assets/downloads/before-the-room-chapter-1.pdf
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /assets/downloads/before-the-room-chapter-1.pdf
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /assets/downloads/before-the-room-chapter-1.pdf
 
 Sitemap: https://goboilthewater.com/sitemap.xml
