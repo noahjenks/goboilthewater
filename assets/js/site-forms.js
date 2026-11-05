@@ -1,6 +1,6 @@
-/* Website forms (Apply to Be a Guest, Request a Listing).
+/* Website forms (Apply to Be a Guest, Request a Listing, Bulk Orders).
    Sends answers to Noah's Google Sheet through his Apps Script web app.
-   Any <form data-gbtw-form="guest|directory"> on a page is handled here. */
+   Any <form data-gbtw-form="guest|directory|bulk"> on a page is handled here. */
 (function () {
   'use strict';
 
@@ -38,7 +38,7 @@
   function subscribe(d) {
     var src = 'direct';
     try { src = localStorage.getItem('gbtw_src') || 'direct'; } catch (e) {}
-    var fields = { EMAIL: d.email, FNAME: d.first_name || '', LNAME: d.last_name || '', ROLE: mcRole(d.role), SOURCE: src, OFFER: 'guest-form' };
+    var fields = { EMAIL: d.email, FNAME: d.first_name || '', LNAME: d.last_name || '', ROLE: mcRole(d.role), SOURCE: src, OFFER: d.form === 'bulk' ? 'bulk-order' : d.form === 'directory' ? 'directory-form' : 'guest-form' };
     var cb = 'gbtwForm_' + Date.now();
     var url = MC_URL;
     Object.keys(fields).forEach(function (k) { url += '&' + k + '=' + encodeURIComponent(fields[k]); });
