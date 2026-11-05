@@ -13,6 +13,7 @@
   /* Two free downloads share this quiz. Pick one with data-offer="workbook" on the [data-gbtw-quiz] element.
      OFFER is sent to Mailchimp as a merge field so the welcome journey can tell them apart. */
   var WORKBOOK_AMAZON = 'https://a.co/d/06ITG5lg';
+  var SAMPLE_URL = '/assets/downloads/before-the-room-free-sample.pdf';
   var OFFERS = {
     ch1: {
       label: 'Free Chapter', heading: 'Get Chapter 1 <em>free.</em>', button: 'Send me Chapter 1',
@@ -22,11 +23,11 @@
       more: 'Want the rest? <a href="https://www.amazon.com/dp/B0HLVV9SBS" target="_blank" rel="noopener">Get it on Amazon</a>, <a href="' + WORKBOOK_AMAZON + '" target="_blank" rel="noopener" data-workbook-link>grab the workbook</a>, or <a href="https://open.spotify.com/show/7cUC4ig0KA3HpG8YFI9sSd" target="_blank" rel="noopener">listen on Spotify</a>.'
     },
     workbook: {
-      label: 'Free Workbook Chapter', heading: 'Get <em>Before the Room</em>, Chapter 1 free.', button: 'Send me the workbook chapter',
-      doneHeading: 'Your workbook chapter <em>is ready.</em>', open: 'Open the workbook chapter', file: '/assets/downloads/before-the-room-chapter-1.pdf',
-      doneText: 'Open it here and save it to your phone, or print it and do it together.',
+      label: 'Free Workbook Sample', heading: 'Get the <em>Before the Room</em> sample free.', button: 'Send me the free sample',
+      doneHeading: 'Your free sample <em>is ready.</em>', open: 'Open the free sample', file: SAMPLE_URL,
+      doneText: 'Chapter 1 of the workbook plus the Birth Rules page from the back. Print it and do it together.',
       tag: '', mcOffer: 'workbook-ch1', keyDone: 'gbtw_wb1_done', keyRole: 'gbtw_wb1_role',
-      more: 'Want all ten chapters? <a href="' + WORKBOOK_AMAZON + '" target="_blank" rel="noopener" data-workbook-link>Get the full workbook on Amazon</a>. It sits right next to <a href="https://www.amazon.com/dp/B0HLVV9SBS" target="_blank" rel="noopener">Go Boil the Water</a>.'
+      more: 'Want all ten chapters? Get the <a href="' + WORKBOOK_AMAZON + '" target="_blank" rel="noopener" data-workbook-link>paperback on Amazon</a> or the <a href="/workbook/#full">printable PDF</a>. It sits right next to <a href="https://www.amazon.com/dp/B0HLVV9SBS" target="_blank" rel="noopener">Go Boil the Water</a>.'
     }
   };
 
@@ -304,6 +305,14 @@
         '<a class="gq-share-btn" href="' + HANDOUT_URL + '" target="_blank" rel="noopener" data-share="handout">Download the partner handout</a>' +
         '<a class="gq-small" href="' + HANDOUT_A4_URL + '" target="_blank" rel="noopener">A4 version</a></div>';
     }
+    // Chapter 1 signups also get the workbook sample, no second form.
+    if (this.offerId === 'ch1') {
+      var pro = role === 'Midwife' || role === 'Doula';
+      html += '<div class="gq-share"><p>' + (pro ? 'Bonus for your families: the workbook sample' : 'Bonus: the free workbook sample') + '</p>' +
+        '<a class="gq-share-btn" href="' + SAMPLE_URL + '" target="_blank" rel="noopener" data-share="workbook-sample">' +
+        (pro ? 'Get pages you can hand partners' : 'Get the pages to do together') + '</a>' +
+        '<p class="gq-sm">Chapter 1 of <a href="/workbook/">Before the Room</a> plus the Birth Rules page. Print it and grab a pen.</p></div>';
+    }
     if (focus.indexOf('Transfer') !== -1) {
       html += '<p class="gq-more">And here’s the post I mentioned: <a href="/blog/home-birth-hospital-transfer/">What happens if we need to transfer?</a></p>';
     }
@@ -311,7 +320,7 @@
     this.root.innerHTML = html;
     var where = this.where, offerId = this.offerId;
     this.root.querySelectorAll('[data-share]').forEach(function (a) {
-      a.addEventListener('click', function () { track('share', { method: a.dataset.share, content_type: offerId === 'workbook' ? 'workbook_ch1' : 'chapter_1', quiz_location: where }); });
+      a.addEventListener('click', function () { track('share', { method: a.dataset.share, content_type: a.dataset.share === 'workbook-sample' || offerId === 'workbook' ? 'workbook_sample' : 'chapter_1', quiz_location: where }); });
     });
   };
 
