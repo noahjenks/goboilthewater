@@ -1,12 +1,12 @@
 name: Render carousels and Metricool CSV
 
-# Runs when a week file in social/carousels/ is pushed to main.
+# Runs when a week file in _social/carousels/ is pushed to main.
 # Renders every carousel in the file to media/carousels/ (served at goboilthewater.com/media/carousels/),
 # makes a preview.png sheet per carousel, and writes the Metricool CSV for the approved ones.
 on:
   push:
     branches: [main]
-    paths: ["social/carousels/*.json"]
+    paths: ["_social/carousels/*.json"]
   workflow_dispatch:
     inputs:
       week:
@@ -30,9 +30,9 @@ jobs:
       - name: Find changed week files
         run: |
           if [ -n "${{ github.event.inputs.week }}" ]; then
-            echo "social/carousels/${{ github.event.inputs.week }}.json" > weeks.txt
+            echo "_social/carousels/${{ github.event.inputs.week }}.json" > weeks.txt
           else
-            git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- 'social/carousels/*.json' > weeks.txt
+            git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- '_social/carousels/*.json' > weeks.txt
           fi
           cat weeks.txt
       - uses: actions/setup-node@v4
@@ -45,11 +45,12 @@ jobs:
       - name: Render and build CSV
         run: |
           while read -r f; do
-            [ -f "$f" ] && python3 scripts/gbtw_carousels_build.py "$f"
+            [ -f "$f" ] && python3 _scripts/gbtw_carousels_build.py "$f"
           done < weeks.txt
       - name: Commit and push
         run: |
-          git add media/carousels social/carousels/*.csv 2>/dev/null || true
+          git add media/carousels
+          git add _social/carousels || true
           if git diff --cached --quiet; then echo "No changes."; exit 0; fi
           git -c user.name="Noah Jenks" -c user.email="noah.jenks@gmail.com" commit -q -m "Render carousels: $(tr '\n' ' ' < weeks.txt)"
           git pull -q --rebase origin main

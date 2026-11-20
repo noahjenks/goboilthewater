@@ -38,7 +38,7 @@ jobs:
           echo "Publishing posts dated on or before $DUE"
           FAILED=0
           for q in $(ls -d ../queue-branch/queue/*/ 2>/dev/null | sort); do
-            if ! python3 scripts/gbtw_publish_post.py "$q" --repo . --due "$DUE"; then
+            if ! python3 _scripts/gbtw_publish_post.py "$q" --repo . --due "$DUE"; then
               FAILED=1; git reset -q --hard HEAD   # drop the failed post, keep the others
             fi
           done
