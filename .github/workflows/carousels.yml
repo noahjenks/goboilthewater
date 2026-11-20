@@ -1,0 +1,56 @@
+name: Render carousels and Metricool CSV
+
+# Runs when a week file in social/carousels/ is pushed to main.
+# Renders every carousel in the file to media/carousels/ (served at goboilthewater.com/media/carousels/),
+# makes a preview.png sheet per carousel, and writes the Metricool CSV for the approved ones.
+on:
+  push:
+    branches: [main]
+    paths: ["social/carousels/*.json"]
+  workflow_dispatch:
+    inputs:
+      week:
+        description: "Week file to rebuild, e.g. 2026-11-30"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-main
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Find changed week files
+        run: |
+          if [ -n "${{ github.event.inputs.week }}" ]; then
+            echo "social/carousels/${{ github.event.inputs.week }}.json" > weeks.txt
+          else
+            git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- 'social/carousels/*.json' > weeks.txt
+          fi
+          cat weeks.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm i --no-save --no-package-lock playwright@1
+          npx playwright install --with-deps chromium
+      - name: Render and build CSV
+        run: |
+          while read -r f; do
+            [ -f "$f" ] && python3 scripts/gbtw_carousels_build.py "$f"
+          done < weeks.txt
+      - name: Commit and push
+        run: |
+          git add media/carousels social/carousels/*.csv 2>/dev/null || true
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          git -c user.name="Noah Jenks" -c user.email="noah.jenks@gmail.com" commit -q -m "Render carousels: $(tr '\n' ' ' < weeks.txt)"
+          git pull -q --rebase origin main
+          git push origin HEAD:main

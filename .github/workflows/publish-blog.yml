@@ -1,0 +1,56 @@
+name: Publish approved blog posts
+
+# Weekdays at 12:15 UTC (6:15 AM Central in winter, 7:15 AM in summer).
+# Publishes every folder on blog-queue that has approved.txt and a date on or before today
+# (Central), and is not already live. Safe to run any number of times.
+on:
+  schedule:
+    - cron: "15 12 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      due:
+        description: "Publish posts dated on or before (YYYY-MM-DD). Blank = today, Central."
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-main
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Get the queue
+        run: |
+          git fetch --depth=1 origin blog-queue
+          git worktree add ../queue-branch FETCH_HEAD
+      - name: Publish what is due
+        run: |
+          DUE="${{ github.event.inputs.due }}"
+          [ -z "$DUE" ] && DUE=$(TZ=America/Chicago date +%F)
+          echo "Publishing posts dated on or before $DUE"
+          FAILED=0
+          for q in $(ls -d ../queue-branch/queue/*/ 2>/dev/null | sort); do
+            if ! python3 scripts/gbtw_publish_post.py "$q" --repo . --due "$DUE"; then
+              FAILED=1; git reset -q --hard HEAD   # drop the failed post, keep the others
+            fi
+          done
+          echo "FAILED=$FAILED" >> "$GITHUB_ENV"
+      - name: Push
+        run: |
+          if [ "$(git rev-list --count origin/main..HEAD)" -gt 0 ]; then
+            git log --oneline origin/main..HEAD
+            git pull -q --rebase origin main
+            git push origin HEAD:main
+          else
+            echo "Nothing to publish today."
+          fi
+          # a failed post fails the run, so GitHub emails Noah
+          [ "$FAILED" = "0" ]
