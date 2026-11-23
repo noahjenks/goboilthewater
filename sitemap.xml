@@ -20,7 +20,7 @@
   </url>
   <url>
     <loc>https://goboilthewater.com/blog/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -273,6 +273,12 @@
   <url>
     <loc>https://goboilthewater.com/blog/does-a-doula-help-the-partner/</loc>
     <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://goboilthewater.com/blog/wife-afraid-of-giving-birth/</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
