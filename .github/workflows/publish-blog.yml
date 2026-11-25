@@ -1,11 +1,14 @@
 name: Publish approved blog posts
 
-# Weekdays at 12:15 UTC (6:15 AM Central in winter, 7:15 AM in summer).
-# Publishes every folder on blog-queue that has approved.txt and a date on or before today
-# (Central), and is not already live. Safe to run any number of times.
+# Weekdays at 12:15 UTC (6:15 AM Central in winter), with backup runs at 13:45 and 15:30 UTC
+# because GitHub's scheduled runs can start hours late. Publishes every folder on blog-queue
+# that has approved.txt and a date on or before today (Central), and is not already live.
+# Safe to run any number of times: whichever run fires first publishes, the rest do nothing.
 on:
   schedule:
     - cron: "15 12 * * 1-5"
+    - cron: "45 13 * * 1-5"
+    - cron: "30 15 * * 1-5"
   workflow_dispatch:
     inputs:
       due:
