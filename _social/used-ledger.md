@@ -4,6 +4,9 @@ Read this instead of old batch docs. One line per item used on Instagram or in e
 Append new lines at the bottom every Thursday. Keep each line short: the distinctive phrase is what
 the reuse check searches for. Blog-only use does not go here (blog posts may reuse any moment).
 
+Before writing any script, overlay or caption, read _social/voice-samples.md and match that voice. After Noah approves the week, add its
+scripts and captions to the top of that file and drop anything older than three weeks.
+
 Format: week of | channel | kind | source | distinctive phrase or topic
 
 last-batch-run: 2026-11-26
