@@ -15,8 +15,9 @@ The week file:
 Outputs:
   media/carousels/<date>-<id>/slide-NN.png and preview.png  (public at goboilthewater.com/media/...)
   _social/carousels/GBTW-Metricool-Carousels-<week>.csv       (approved only; _ folders stay off the public site)
+  _social/carousels/GBTW-GHL-Carousels-<week>.csv             (approved only; HighLevel Social Planner bulk upload, basic format)
 """
-import json, os, subprocess, sys
+import csv, json, os, subprocess, sys
 
 BASE = "https://goboilthewater.com/media/carousels"
 OUT = "media/carousels"
@@ -41,6 +42,16 @@ csv_path = f"_social/carousels/GBTW-Metricool-Carousels-{week['week']}.csv"
 if any(m["approved"] for m in manifest):
     json.dump(manifest, open("/tmp/gbtw-manifest.json", "w"))
     subprocess.run(["python3", "_scripts/gbtw_metricool_csv.py", "/tmp/gbtw-manifest.json", csv_path], check=True)
+    # HighLevel Social Planner bulk upload (basic CSV). Headers must match HighLevel's sample exactly.
+    # Times are read in the HighLevel location's time zone (US Central).
+    ghl_path = f"_social/carousels/GBTW-GHL-Carousels-{week['week']}.csv"
+    with open(ghl_path, "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["postAtSpecificTime (YYYY-MM-DD HH:mm:ss)", "content", "link (OGmetaUrl)", "imageUrls", "gifUrl", "videoUrls"])
+        for m in manifest:
+            if m["approved"]:
+                w.writerow([f"{m['date']} {m['time']}", m["caption"], "", ",".join(m["media"]), "", ""])
+    print("wrote", ghl_path)
 else:
     print("No carousels approved yet, so no CSV. Previews only.")
 for cid, c in cars.items():
