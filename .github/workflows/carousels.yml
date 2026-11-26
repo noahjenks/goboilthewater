@@ -1,8 +1,10 @@
-name: Render carousels and Metricool CSV
+name: Render carousels and schedule them in HighLevel
 
 # Runs when a week file in _social/carousels/ is pushed to main.
 # Renders every carousel in the file to media/carousels/ (served at goboilthewater.com/media/carousels/),
-# makes a preview.png sheet per carousel, and writes the Metricool CSV for the approved ones.
+# makes a preview.png sheet per carousel, writes the HighLevel CSV for the approved ones, and schedules the
+# approved ones in HighLevel's Social Planner through its API (needs the GHL_TOKEN secret and GHL_LOCATION_ID variable;
+# see _scripts/gbtw_ghl_schedule.py).
 on:
   push:
     branches: [main]
@@ -42,12 +44,20 @@ jobs:
         run: |
           npm i --no-save --no-package-lock playwright@1
           npx playwright install --with-deps chromium
-      - name: Render and build CSV
+      - name: Render, build CSV and schedule in HighLevel
+        env:
+          GHL_TOKEN: ${{ secrets.GHL_TOKEN }}
+          GHL_LOCATION_ID: ${{ vars.GHL_LOCATION_ID }}
+          GHL_INSTAGRAM_ACCOUNT_ID: ${{ vars.GHL_INSTAGRAM_ACCOUNT_ID }}
+          GHL_USER_ID: ${{ vars.GHL_USER_ID }}
         run: |
           while read -r f; do
-            [ -f "$f" ] && python3 _scripts/gbtw_carousels_build.py "$f"
+            [ -f "$f" ] || continue
+            python3 _scripts/gbtw_carousels_build.py "$f"
+            python3 _scripts/gbtw_ghl_schedule.py /tmp/gbtw-manifest.json
           done < weeks.txt
       - name: Commit and push
+        if: always()
         run: |
           git add media/carousels
           git add _social/carousels || true
