@@ -1,5 +1,6 @@
 // GBTW carousel renderer: node gbtw_carousel_render.js specs.json outdir [C3 C4 ...]
 // specs.json: {"C1": {"date": "2026-11-30", "theme": "light|dark|oak", "slides": [{"tag", "headline", "body"}]}, ...}
+// Side padding is 180px so text stays inside Instagram's 3:4 profile-grid crop (which trims 135px off each side).
 // Writes outdir/<date>-<id>/slide-NN.png (1080x1080) and outdir/<date>-<id>/preview.png (all slides on one sheet).
 // Brand Bible: Parchment #F5EFE4 / Midnight Ink #1C1812 / Deep Oak #2E1A0E, Saddle #8B5C2A, Brass #C4925A,
 // Playfair Display Italic Bold headlines, DM Sans body and tags.
@@ -17,15 +18,15 @@ const esc = t => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const page = (c, s, i, n, hs, bs) => `<html><head><style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=DM+Sans:wght@400;500&display=swap');
 html,body{margin:0;width:1080px;height:1080px;overflow:hidden}
-body{background:${c.bg};font-family:'DM Sans',sans-serif;box-sizing:border-box;padding:116px 110px 92px;display:flex;flex-direction:column}
+body{background:${c.bg};font-family:'DM Sans',sans-serif;box-sizing:border-box;padding:116px 180px 92px;display:flex;flex-direction:column}
 .tag{font-weight:500;letter-spacing:.12em;text-transform:uppercase;font-size:27px;color:${c.tag}}
 .rule{width:72px;height:3px;background:${c.tag};margin:22px 0 42px;flex:none}
 h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:${hs}px;line-height:1.12;margin:0 0 34px;color:${c.head}}
-.body{font-size:${bs}px;line-height:1.42;color:${c.body};max-width:860px}
-#wrap{flex:1 1 auto;min-height:0}
+.body{font-size:${bs}px;line-height:1.42;color:${c.body}}
+#wrap{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
 .foot{display:flex;justify-content:space-between;font-size:25px;color:${c.foot};padding-top:24px}
-</style></head><body><div id="wrap"><div class="tag">${esc(s.tag)}</div><div class="rule"></div>
-<h1>${esc(s.headline)}</h1><div class="body">${esc(s.body)}</div></div>
+</style></head><body><div id="wrap"><div id="inner"><div class="tag">${esc(s.tag)}</div><div class="rule"></div>
+<h1>${esc(s.headline)}</h1><div class="body">${esc(s.body)}</div></div></div>
 <div class="foot"><span>@goboilthewater</span><span>${i + 1} / ${n}</span></div></body></html>`;
 
 (async () => {
@@ -40,11 +41,11 @@ h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-s
     const c = T[spec.theme] || T.light;
     const shots = [];
     for (const [i, s] of spec.slides.entries()) {
-      let hs = i === 0 ? 84 : 72, bs = 40, fit = false;
+      let hs = i === 0 ? 76 : 64, bs = 36, fit = false;
       while (!fit) {
         await p.setContent(page(c, s, i, spec.slides.length, hs, bs), { waitUntil: 'networkidle' });
         await p.evaluate(() => document.fonts.ready);
-        fit = await p.evaluate(() => { const w = document.getElementById('wrap'); return w.scrollHeight <= w.clientHeight; });
+        fit = await p.evaluate(() => document.getElementById('inner').offsetHeight <= document.getElementById('wrap').clientHeight);
         if (!fit) { hs -= 4; bs -= 2; if (bs < 28) { console.log('TOO LONG', id, 'slide', i + 1); tooLong++; break; } }
       }
       const file = `${dir}/slide-${String(i + 1).padStart(2, '0')}.png`;
