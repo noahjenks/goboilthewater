@@ -11,6 +11,7 @@ Match their voice. Each Thursday run adds its week at the top (after Noah approv
 - The tip is one full sentence with a concrete action and a "so he can" that says why it matters.
 - The send line names a specific person ("Send this to the husband who learns by doing."), not a generic "send this to him".
 - Talking-head scripts use HOOK, BEAT 1 to 3 and CTA. Each beat is one or two spoken sentences with a real detail from Noah's own life (the chair in the corner at Sebastian's birth, Mary Beth at Cora's birth, Gloria and the tub at Amani's). Short is fine. Clipped fragments strung together are not.
+- Vary every carousel's CTA slide (tag and body) and the caption's CTA line across the week, tied to that carousel's topic. Keep the trigger word exact (CHAPTER or WORKBOOK). Never the same CTA wording twice in a week or two weeks running.
 - Never pad with stock lines like "That's normal." or "Plain and simple." Say the actual thing.
 
 ## Week of Nov 30, 2026 (v2, rewritten after Noah's note that v1 was choppy)
