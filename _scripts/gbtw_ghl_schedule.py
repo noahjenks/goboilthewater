@@ -77,10 +77,10 @@ def main():
             print(f"{p['id']}: {p['date']} {p['time']} Central is in the past, skipping")
         else:
             todo.append((p, when))
+    acct = instagram_account(token, loc)  # read-only; also proves the token and location work on every run
     if not todo:
-        print("Nothing new to schedule.")
+        print("Connection to HighLevel OK. Nothing new to schedule.")
         return
-    acct = instagram_account(token, loc)
     for p, when in todo:
         body = {
             "accountIds": [acct],
