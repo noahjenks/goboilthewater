@@ -34,7 +34,7 @@ jobs:
           if [ -n "${{ github.event.inputs.week }}" ]; then
             echo "_social/carousels/${{ github.event.inputs.week }}.json" > weeks.txt
           else
-            git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- '_social/carousels/*.json' > weeks.txt
+            git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- '_social/carousels/*.json' | grep -E '/[0-9]{4}-[0-9]{2}-[0-9]{2}\.json$' > weeks.txt || true
           fi
           cat weeks.txt
       - uses: actions/setup-node@v4
