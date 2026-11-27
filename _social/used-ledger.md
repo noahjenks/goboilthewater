@@ -75,12 +75,13 @@ seeded-through: week of 2026-11-23 (Nov 23 content logs from both batch docs add
 2026-11-30 | IG carousel C7 Sun Dec 6 | topic | workbook Ask your midwife page | "Questions he should ask the midwife out loud"
 2026-11-30 | IG carousel C7 | quote | Mary (doula) | "Don't take a back seat role"
 2026-11-30 | IG carousel C7 caption | quote | Lauralee (Birth Mother survey) | "I had no idea what to ask"
-2026-11-30 | IG talking head Mon Nov 30 | hook | Noah | "This is for the mom whose husband will never read a birth book" (workbook)
-2026-11-30 | IG talking head Wed Dec 2 | hook | Noah | "Don't let labor be the first time you hear her birth rules"
-2026-11-30 | IG talking head Fri Dec 4 | hook | Noah | "Midwives and doulas, the husband in the corner of the first consultation" (bulk)
-2026-11-30 | IG talking head Sun Dec 6 | hook | Noah's own story | "Somebody had to show me" (Mary Beth at Cora's birth; book CTA)
+2026-11-30 | IG talking head Mon Nov 30 | hook | Noah | "Ask her this before labor: what will you need from me" (Kaelah; workbook Together page)
+2026-11-30 | IG talking head Wed Dec 2 | hook | Noah | "Don't let labor be the first time you hear her birth rules" (Amani night, boil water)
+2026-11-30 | IG talking head Fri Dec 4 | hook | Noah | "Midwives and doulas, what do you wish the husband would do before your next visit?" (bulk pair)
+2026-11-30 | IG talking head Sun Dec 6 | hook | Noah's own story | "At our daughter Cora's birth, I stood right next to my wife with no idea" (Mary Beth; book CTA)
 2026-11-30 | IG B-roll reel Tue Dec 1 | hook | Noah; kitchen-noahkatie-kissing-01 | "Ask her this tonight" (Together page; WORKBOOK)
 2026-11-30 | IG B-roll reel Sat Dec 5 | hook | Noah; city-noah-stairs-03 | "Buying for a dad-to-be?" (gift angle; book and workbook)
 2026-11-30 | IG Story Mon Nov 30 | topic | FREECOPY | FREECOPY last call (closes Nov 30)
 2026-11-30 | email parents Mon Nov 30 | topic | one mom; Kaelah | "What do moms wish he knew before labor?" (button: workbook Chapter 1 PDF)
 2026-11-30 | email birth workers Mon Nov 30 | topic | Gloria; bulk page | "What do you hand the husband at intake?" (bulk offer)
+2026-11-30 | IG talking head Mon Nov 30 | quote | Kaelah (Birth Mother survey) | "this was something that I didn't communicate clearly with him"
